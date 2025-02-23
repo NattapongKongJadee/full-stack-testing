@@ -1,22 +1,22 @@
 openapi: 3.0.0
 info:
-  title: "User management API"
-  description: "for participiant test"
-  version: "1.0.0"
+  title: 'User management API'
+  description: 'for participiant test'
+  version: '1.0.0'
 servers:
   - url: http://localhost:8080
     description: local environment
 tags:
-- name: Health
-  description: health check
-- name: User
-  description: user management
+  - name: Health
+    description: health check
+  - name: User
+    description: user management
 paths:
   /health:
     get:
       operationId: healthCheck
       summary: Health check server alive
-      tags: 
+      tags:
         - Health
       responses:
         '200':
@@ -25,9 +25,9 @@ paths:
   /user:
     post:
       operationId: createUser
-      summary: "[Required] Create user and save to database"
+      summary: '[Required] Create user and save to database'
       tags:
-      - User
+        - User
       requestBody:
         $ref: '#/components/requestBodies/CreateUserRequest'
       responses:
@@ -37,34 +37,34 @@ paths:
           description: 'bad request'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "invalid"
-                  message: "validate messsage ..."
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'invalid'
+                message: 'validate messsage ...'
         '409':
           description: 'conflict duplicate email'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "duplicate_email"
-                  message: "email already in use"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'duplicate_email'
+                message: 'email already in use'
         '500':
           description: 'Internal server error'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "internal"
-                  message: "internal server error"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'internal'
+                message: 'internal server error'
 
   /users:
     get:
       operationId: getListUser
-      summary: "[Required] Retrieve users information can be filter limit, offset, sorting by created_at direction asc or desc"
+      summary: '[Required] Retrieve users information can be filter limit, offset, sorting by created_at direction asc or desc'
       tags:
         - User
       parameters:
@@ -93,25 +93,25 @@ paths:
           description: 'bad request'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "invalid"
-                  message: "validate messsage ..."
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'invalid'
+                message: 'validate messsage ...'
         '500':
           description: 'Internal server error'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "internal"
-                  message: "internal server error"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'internal'
+                message: 'internal server error'
 
   /user/{id}:
     get:
       operationId: getUser
-      summary: "[Required] Retrieve user information by id"
+      summary: '[Required] Retrieve user information by id'
       tags:
         - User
       parameters:
@@ -128,23 +128,23 @@ paths:
           description: 'bad request'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "invalid"
-                  message: "validate messsage ..."
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'invalid'
+                message: 'validate messsage ...'
         '500':
           description: 'Internal server error'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "internal"
-                  message: "internal server error"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'internal'
+                message: 'internal server error'
     put:
       operationId: updateUser
-      summary: "[Required] Update user information"
+      summary: '[Required] Update user information'
       tags:
         - User
       parameters:
@@ -162,33 +162,33 @@ paths:
           description: 'bad request'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "invalid"
-                  message: "validate messsage ..."
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'invalid'
+                message: 'validate messsage ...'
         '409':
           description: 'User not exist'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "user_not_exist"
-                  message: "User not exist"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'user_not_exist'
+                message: 'User not exist'
         '500':
           description: 'Internal server error'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "internal"
-                  message: "internal server error"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'internal'
+                message: 'internal server error'
 
     delete:
       operationId: deleteUser
-      summary: "[Required] Delete user (hard delete)"
+      summary: '[Required] Delete user (hard delete)'
       tags:
         - User
       parameters:
@@ -204,34 +204,34 @@ paths:
           description: 'bad request'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "invalid"
-                  message: "validate messsage ..."
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'invalid'
+                message: 'validate messsage ...'
         '409':
           description: 'User not exist'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "user_not_exist"
-                  message: "User not exist"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'user_not_exist'
+                message: 'User not exist'
         '500':
           description: 'Internal server error'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "internal"
-                  message: "internal server error"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'internal'
+                message: 'internal server error'
 
   /user/{id}/profile_picture:
     post:
       operationId: uploadProfilePicture
-      summary: "[Optional] Upload user profile picture; upload picture and save picture as base64 into database"
+      summary: '[Optional] Upload user profile picture; upload picture and save picture as base64 into database'
       tags:
         - Profile Picture
       parameters:
@@ -259,16 +259,16 @@ paths:
           description: 'bad request'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "invalid"
-                  message: "validate messsage ..."
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'invalid'
+                message: 'validate messsage ...'
         '422':
           description: 'Unsupport media type'
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: '#/components/schemas/GenericResponse'
               example:
                 code: 'unsupport_media_type'
@@ -277,24 +277,24 @@ paths:
           description: 'User not exist'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "user_not_exist"
-                  message: "User not exist"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'user_not_exist'
+                message: 'User not exist'
         '500':
           description: 'Internal server error'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "internal"
-                  message: "internal server error"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'internal'
+                message: 'internal server error'
 
     get:
       operationId: getProfilePicture
-      summary: "[Optional] Get user profile picture; stream user profile picture"
+      summary: '[Optional] Get user profile picture; stream user profile picture'
       tags:
         - Profile Picture
       parameters:
@@ -324,44 +324,44 @@ paths:
           description: 'bad request'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "invalid"
-                  message: "validate messsage ..."
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'invalid'
+                message: 'validate messsage ...'
         '409':
           description: 'User not exist'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "user_not_exist"
-                  message: "User not exist"
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'user_not_exist'
+                message: 'User not exist'
         '500':
           description: 'Internal server error'
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/GenericResponse'
-                example:
-                  code: "internal"
-                  message: "internal server error"
-        
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+              example:
+                code: 'internal'
+                message: 'internal server error'
+
 components:
   schemas:
     User:
       type: object
       required:
-      - id
-      - first_name
-      - last_name
-      - age
-      - gender
-      - phone_number
-      - email
-      - created_at
-      - updated_at
+        - id
+        - first_name
+        - last_name
+        - age
+        - gender
+        - phone_number
+        - email
+        - created_at
+        - updated_at
       properties:
         id:
           type: string
@@ -397,8 +397,7 @@ components:
         message:
           type: string
         data:
-          type: object  
-          
+          type: object
 
   requestBodies:
     CreateUserRequest:
@@ -407,17 +406,17 @@ components:
           schema:
             type: object
             required:
-            - first_name
-            - last_name
-            - age
-            - gender
-            - email
+              - first_name
+              - last_name
+              - age
+              - gender
+              - email
             properties:
               first_name:
                 type: string
               last_name:
                 type: string
-              age: 
+              age:
                 type: integer
               gender:
                 type: string
@@ -437,17 +436,17 @@ components:
           schema:
             type: object
             required:
-            - first_name
-            - last_name
-            - age
-            - gender
-            - email
+              - first_name
+              - last_name
+              - age
+              - gender
+              - email
             properties:
               first_name:
                 type: string
               last_name:
                 type: string
-              age: 
+              age:
                 type: integer
               gender:
                 type: string
@@ -472,7 +471,7 @@ components:
               - type: object
             type: object
             required:
-            - id
+              - id
             properties:
               data:
                 type: object
@@ -490,7 +489,7 @@ components:
               - $ref: '#/components/schemas/GenericResponse'
               - type: object
             required:
-            - data
+              - data
             properties:
               data:
                 type: object
@@ -512,7 +511,3 @@ components:
                     type: array
                     items:
                       $ref: '#/components/schemas/User'
-
-
-
-
