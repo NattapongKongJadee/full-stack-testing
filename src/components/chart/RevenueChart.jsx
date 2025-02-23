@@ -37,31 +37,29 @@ const RevenueChart = () => {
         "Dec",
       ],
       labels: {
-        style: { colors: "white", fontSize: "12px", fontWeight: 500 }, // Set x-axis font to white
+        style: { colors: "white", fontSize: "12px", fontWeight: 500 },
       },
       axisBorder: { show: false },
       axisTicks: { show: false },
     },
 
-    // ✅ Y-Axis Styling
     yaxis: {
       labels: {
-        style: { colors: "white", fontSize: "12px", fontWeight: 500 }, // Set y-axis font to white
+        style: { colors: "white", fontSize: "12px", fontWeight: 500 },
       },
     },
 
-    // ✅ Tooltip Text Styling
     tooltip: {
-      theme: "dark", // Use dark mode for tooltips
+      theme: "dark",
       style: { fontSize: "12px", color: "white" },
     },
     grid: { show: false },
     legend: {
-      position: "top", // ✅ Moves legend to the top
-      horizontalAlign: "right", // Aligns legend to the left (can be "center" or "right")
-      fontSize: "12px", // Adjust font size
+      position: "top",
+      horizontalAlign: "right",
+      fontSize: "12px",
       labels: {
-        colors: "white", // Set text color to white
+        colors: "white",
       },
     },
   };

@@ -15,7 +15,6 @@ const ListItem = ({ subheader, icon, path, active }) => {
   return (
     <ListItemButton
       component={Link}
-      href={path}
       onClick={handleClick}
       sx={{ opacity: active ? 1 : 0.3 }}
     >
@@ -24,7 +23,7 @@ const ListItem = ({ subheader, icon, path, active }) => {
           <IconifyIcon
             icon={icon}
             sx={{
-              color: active && path === "/" ? "#white" : "white",
+              color: "white",
             }}
           />
         )}
@@ -33,7 +32,7 @@ const ListItem = ({ subheader, icon, path, active }) => {
         primary={subheader}
         sx={{
           "& .MuiListItemText-primary": {
-            color: active && path === "/" ? "primary.main" : null,
+            color: active && path === "/" ? "#101935" : null,
           },
         }}
       />

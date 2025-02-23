@@ -1,5 +1,3 @@
-import paths from "./paths";
-
 const sitemap = [
   {
     id: "dashboard",

@@ -25,7 +25,9 @@ import { PaginationQueryDto } from './dto/pagination.query.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Users') // ✅ Ensure the controller has a Swagger tag
 @Controller('user')
 export class UserController {
   constructor(
@@ -75,14 +77,18 @@ export class UserController {
 
   // ✅ Update a user
   @Put(':id')
-  async updateUser(@Param('id') id: string, @Body() body: any) {
+  @ApiBody({ type: UpdateUserDto })
+  async updateUser(
+    @Param('id') id: string,
+    @Body(new ValidationPipe({ transform: true })) body: UpdateUserDto, // ✅ Apply validation pipe here
+  ) {
     const user = await this.userService.findOne(id);
     if (!user) {
       throw new NotFoundException(`User ${id} not found`);
     }
 
-    const dtoInstance = plainToInstance(UpdateUserDto, body);
-    const errors = await validate(dtoInstance);
+    // ✅ No need to use plainToInstance manually
+    const errors = await validate(body);
     if (errors.length > 0) {
       throw new BadRequestException(
         errors
@@ -92,19 +98,15 @@ export class UserController {
       );
     }
 
-    // ✅ 3. Check for duplicate email
-    if (dtoInstance.email && dtoInstance.email !== user.email) {
-      const existingUser = await this.userService.findByEmail(
-        dtoInstance.email,
-      );
+    if (body.email && body.email !== user.email) {
+      const existingUser = await this.userService.findByEmail(body.email);
       if (existingUser) {
         throw new ConflictException('Email is already in use.');
       }
     }
 
-    // ✅ 4. Perform the update
     await this.userService.updateUser(id, {
-      ...dtoInstance,
+      ...body,
       updated_at: new Date(),
     });
 

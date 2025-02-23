@@ -4,7 +4,6 @@ const TableHeaderCustom = ({ isAllSelected, handleSelectAll }) => {
   return (
     <TableHead>
       <TableRow>
-        {/* ✅ Checkbox for selecting all orders */}
         <TableCell sx={{ color: "white", borderBottom: "none" }}>
           <Checkbox
             color="primary"

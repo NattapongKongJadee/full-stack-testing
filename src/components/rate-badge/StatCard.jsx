@@ -1,5 +1,5 @@
 import { Box, Stack, Paper, Typography, IconButton } from "@mui/material";
-import IconifyIcon from "../base/IconifyIcon"; // Ensure correct import
+import IconifyIcon from "../base/IconifyIcon";
 import RateBadge from "./RateBadge";
 
 const StatCard = ({ icon, title, value, rate, isUp }) => {
@@ -13,12 +13,11 @@ const StatCard = ({ icon, title, value, rate, isUp }) => {
         borderColor: "gray",
         boxShadow: 3,
         minWidth: 240,
-        minHeight: "20px", // Ensures minimum height
+        minHeight: "20px",
         maxHeight: { xs: "auto", md: "400px" },
       }}
     >
       <Stack spacing={1.5}>
-        {/* Header: Icon + Title + Menu */}
         <Stack
           direction="row"
           alignItems="center"
@@ -35,7 +34,6 @@ const StatCard = ({ icon, title, value, rate, isUp }) => {
           </IconButton>
         </Stack>
 
-        {/* Value + Rate Badge */}
         <Stack direction="row" alignItems="center" spacing={1}>
           <Typography
             variant="h6"

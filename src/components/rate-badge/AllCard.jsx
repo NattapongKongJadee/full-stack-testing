@@ -4,35 +4,35 @@ import StatCard from "./StatCard";
 const cardsData = [
   {
     id: 1,
-    title: "Monthly Users",
-    value: "23.6K",
+    title: "Pageviews",
+    value: "50.8K",
+    rate: "28.4%",
+    isUp: true,
+    icon: "solar:eye-bold",
+  },
+  {
+    id: 2,
+    title: "Monthly users",
+    value: "$23.6K",
     rate: "12.6%",
     isUp: false,
     icon: "solar:user-bold",
   },
   {
-    id: 2,
-    title: "Revenue",
-    value: "$45.3K",
-    rate: "8.2%",
-    isUp: true,
-    icon: "mingcute:currency-dollar-2-line",
-  },
-  {
     id: 3,
-    title: "New Orders",
-    value: "1.2K",
-    rate: "5.4%",
+    title: "New sign ups",
+    value: "756",
+    rate: "3.1%",
     isUp: true,
-    icon: "solar:cart-bold",
+    icon: "solar:user-plus-bold",
   },
   {
     id: 4,
-    title: "Product Views",
-    value: "89.4K",
-    rate: "9.1%",
-    isUp: false,
-    icon: "solar:eye-bold",
+    title: "Subscriptions",
+    value: "2.3K",
+    rate: "11.3%",
+    isUp: true,
+    icon: "solar:crown-star-bold",
   },
 ];
 
@@ -41,9 +41,9 @@ const AllCards = () => {
     <Box
       display="grid"
       gridTemplateColumns={{
-        xs: "1fr", // 1 column on extra small screens
-        sm: "1fr 1fr", // 2 columns on small screens
-        lg: "1fr 1fr 1fr 1fr", // 4 columns on large screens
+        xs: "1fr",
+        sm: "1fr 1fr",
+        lg: "1fr 1fr 1fr 1fr",
       }}
       sx={{ color: "#212C4D" }}
       gap={{ xs: 1, sm: 1, lg: 2 }}

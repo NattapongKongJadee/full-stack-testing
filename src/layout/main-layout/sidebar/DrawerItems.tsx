@@ -30,7 +30,7 @@ const DrawerItems = () => {
         justifyContent="flex-start"
         zIndex={1000}
       >
-        <ButtonBase component={Link} href="/" disableRipple>
+        <ButtonBase component={Link} href="/home" disableRipple>
           <Image
             src="../public/Logo.png"
             alt="logo"

@@ -85,7 +85,6 @@ const UsersByCountry = () => {
         gap={3}
         mt={2}
       >
-        {/* Left Side: Country List with Progress Bars */}
         <Box>
           <Box display="flex" alignItems="center" justifyContent="start">
             <Typography
@@ -138,7 +137,6 @@ const UsersByCountry = () => {
           ))}
         </Box>
 
-        {/* Right Side: Interactive World Map */}
         <Box sx={{ width: "100%", height: 350 }}>
           <VectorMap
             map={worldMill}
@@ -153,10 +151,10 @@ const UsersByCountry = () => {
             }))}
             markerStyle={{
               initial: {
-                fill: "#C54CFF", // Change to pink (previous color)
+                fill: "#C54CFF",
                 stroke: "#fff",
                 strokeWidth: 4,
-                r: 8, // Adjust marker size
+                r: 8,
               },
               hover: { fill: "#fff" },
             }}

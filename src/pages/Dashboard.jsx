@@ -1,8 +1,6 @@
-import Grid from "@mui/material/Grid";
-import TopCards from "../components/top-cards";
-import MainLayout from "../layout/main-layout";
+import DashBoardLayout from "../layout/main-layout";
 const Dashboard = () => {
-  return <MainLayout></MainLayout>;
+  return <DashBoardLayout></DashBoardLayout>;
 };
 
 export default Dashboard;

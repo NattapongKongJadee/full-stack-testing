@@ -29,8 +29,6 @@ const TopSection = () => {
           Measure your advertising ROI and report website traffic.
         </Typography>
       </Box>
-
-      {/* Right Side - Buttons */}
       <Stack
         direction="row"
         spacing={2}

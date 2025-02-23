@@ -21,7 +21,6 @@ const SessionsChart = () => {
     grid: { show: false },
     yaxis: { labels: { style: { colors: "white" } } },
     tooltip: { theme: "dark" },
-    // colors: ["#4DB6FF", "#C54CFF"],
     colors: ["#C54CFF"],
   };
 

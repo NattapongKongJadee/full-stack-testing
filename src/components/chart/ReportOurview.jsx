@@ -6,7 +6,6 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
   TableRow,
   Button,
   Checkbox,
@@ -21,24 +20,24 @@ const ReportsOverview = () => {
       type: "donut",
     },
     labels: ["Desktop users", "Phone app users", "Laptop users"],
-    colors: ["#C54CFF", "#0047FF", "#72D2FF"], // Designer's colors
+    colors: ["#C54CFF", "#0047FF", "#72D2FF"],
     legend: {
-      show: false, // ✅ This hides the legend
+      show: false,
     },
     plotOptions: {
       pie: {
-        startAngle: -100, // Adjusted for a better curve
+        startAngle: -100,
         endAngle: 100,
-        offsetY: 20, // Centers donut
+        offsetY: 20,
         donut: {
-          size: "80%", // Adjust thickness
+          size: "80%",
         },
       },
     },
     dataLabels: {
-      enabled: false, // ❌ Hide percentage labels inside chart
+      enabled: false,
     },
-    stroke: { width: 0 }, // No border
+    stroke: { width: 0 },
 
     tooltip: {
       enabled: true,
@@ -49,7 +48,6 @@ const ReportsOverview = () => {
   const chartSeries = [15624, 5546, 2478];
   const totalUsers = chartSeries.reduce((a, b) => a + b, 0);
 
-  // Mock data for recent orders
   const orders = [
     { id: 1532, date: "Dec 30, 10:06 AM", status: "Paid", total: "$329.40" },
     { id: 1531, date: "Dec 29, 2:59 AM", status: "Pending", total: "$117.24" },
@@ -65,7 +63,6 @@ const ReportsOverview = () => {
     setSelectedOrders(event.target.checked ? orders.map((o) => o.id) : []);
   };
 
-  // ✅ Toggle individual order selection
   const handleSelectOne = (id) => {
     setSelectedOrders((prev) =>
       prev.includes(id)
@@ -80,7 +77,6 @@ const ReportsOverview = () => {
       gridTemplateColumns={{ xs: "1fr", md: "1fr 1fr" }}
       gap={3}
     >
-      {/* User Distribution Chart (Semi Donut) */}
       <Paper
         sx={{
           p: 3,
@@ -101,9 +97,8 @@ const ReportsOverview = () => {
             options={semiDonutChartOptions}
             series={chartSeries}
             type="donut"
-            height={300} // Adjusted height to match design
+            height={300}
           />
-          {/* 🔢 Total users count below chart */}
           <Typography variant="h3" fontWeight="bold" color="white" mt={-20}>
             {totalUsers.toLocaleString()}
           </Typography>
@@ -113,10 +108,10 @@ const ReportsOverview = () => {
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column", // ✅ Stack legend items in a column
-              alignItems: "center", // ✅ Centers the entire legend box
-              justifyContent: "center", // ✅ Ensures full centering
-              gap: 1, // ✅ Reduces spacing for a clean look
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 1,
               mt: 2,
             }}
           >
@@ -126,10 +121,10 @@ const ReportsOverview = () => {
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "flex-start", // ✅ Aligns text & circles left inside the centered box
+                  justifyContent: "flex-start",
                   gap: 1,
-                  width: "100%", // ✅ Takes full width to ensure left alignment inside a centered box
-                  maxWidth: "200px", // ✅ Optional: Adjust max width for layout consistency
+                  width: "100%",
+                  maxWidth: "200px",
                 }}
               >
                 <Box
@@ -150,8 +145,6 @@ const ReportsOverview = () => {
           </Box>
         </Box>
       </Paper>
-
-      {/* Recent Orders Table */}
       <Paper
         sx={{
           p: { xs: 2, sm: 3, md: 4 },
@@ -188,14 +181,14 @@ const ReportsOverview = () => {
                         borderBottom: "none",
                         color: "white",
                         fontSize: { xs: "0.75rem", sm: "0.875rem" },
-                      }} // ✅ Ensures no border per cell
+                      }}
                     >
                       <Checkbox
                         checked={selectedOrders.includes(order.id)}
                         onChange={() => handleSelectOne(order.id)}
                         sx={{
-                          color: "#C54CFF", // Default checkbox color
-                          "&.Mui-checked": { color: "#C54CFF" }, // Checked state color
+                          color: "#C54CFF",
+                          "&.Mui-checked": { color: "#C54CFF" },
                         }}
                       />
                       #{order.id}
@@ -228,9 +221,9 @@ const ReportsOverview = () => {
                             xs: "0.55rem",
                             sm: "0.65rem",
                           },
-                          px: { xs: 0.5, sm: 1.2 }, // Adjust horizontal padding
-                          py: { xs: 0.2, sm: 0.5 }, // Adjust vertical padding
-                          minWidth: { xs: "40px", sm: "auto" }, // Prevent extreme shrinking on XS
+                          px: { xs: 0.5, sm: 1.2 },
+                          py: { xs: 0.2, sm: 0.5 },
+                          minWidth: { xs: "40px", sm: "auto" },
                         }}
                       >
                         {order.status}

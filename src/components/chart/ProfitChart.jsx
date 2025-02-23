@@ -22,12 +22,11 @@ const ProfitChart = () => {
       labels: { style: { colors: "white" } },
     },
     grid: { show: false },
-    // yaxis: { labels: { style: { colors: "white" } } },
     yaxis: { labels: false },
     tooltip: { theme: "dark" },
     colors: ["#4DB6FF", "#C54CFF"],
     legend: {
-      show: false, // ✅ This hides the legend
+      show: false,
     },
   };
 
