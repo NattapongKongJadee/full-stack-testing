@@ -25,19 +25,15 @@ export class UserService {
     offset?: number,
     sortDirection: 'asc' | 'desc' = 'asc',
   ) {
-    // ✅ Ensure `limit` has a default of 10, within range (0 >= limit <= 100)
     const finalLimit =
       limit !== undefined ? Math.max(0, Math.min(limit, 100)) : 10;
 
-    // ✅ Ensure `offset` is at least 0
     const finalOffset = offset !== undefined ? Math.max(0, offset) : 0;
 
-    // ✅ Validate `sort_direction`
     if (sortDirection !== 'asc' && sortDirection !== 'desc') {
       throw new BadRequestException('Sort direction must be "asc" or "desc".');
     }
 
-    // ✅ Fetch users from DB sorted by `created_at`
     return await this.userRepository.find({
       take: finalLimit,
       skip: finalOffset,
@@ -45,14 +41,10 @@ export class UserService {
     });
   }
 
-  // async findOne(id: string): Promise<User | null> {
-  //   return this.userRepository.findOne({ where: { id } });
-  // }
-
   async findOne(id: string): Promise<User | null> {
     try {
       const user = await this.userRepository.findOne({ where: { id } });
-      return user ?? null; // ✅ Ensure it returns `null` if user is not found
+      return user ?? null;
     } catch (error) {
       console.error(`Error finding user with ID ${id}:`, error);
       return null;

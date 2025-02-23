@@ -23,9 +23,8 @@ import { CreateUserDto } from './dto/users.dto';
 import { UserService } from './users.service';
 import { PaginationQueryDto } from './dto/pagination.query.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
-import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Users') // ✅ Ensure the controller has a Swagger tag
 @Controller('user')
@@ -124,6 +123,19 @@ export class UserController {
 
   // ✅ Upload Profile Picture and Save Path in DB
   @Post(':id/profile_picture')
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        picture: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+      required: ['picture'],
+    },
+  })
   @UseInterceptors(
     FileInterceptor('picture', {
       storage: diskStorage({
@@ -132,12 +144,31 @@ export class UserController {
           callback(null, `${req.params.id}-${file.originalname}`);
         },
       }),
+      limits: {
+        fileSize: 5 * 1024 * 1024,
+      },
+      fileFilter: (req, file, callback) => {
+        if (!['image/jpeg', 'image/png'].includes(file.mimetype)) {
+          return callback(
+            new BadRequestException(
+              'Only jpg, jpeg, and png files are allowed',
+            ),
+            false,
+          );
+        }
+        callback(null, true);
+      },
     }),
   )
   async uploadProfilePicture(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
   ) {
+    // Check if file is present
+    if (!file) {
+      throw new BadRequestException('Picture file is required');
+    }
+
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) throw new NotFoundException(`User ${id} not found`);
 
