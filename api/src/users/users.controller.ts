@@ -26,7 +26,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { validate } from 'class-validator';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Users') // ✅ Ensure the controller has a Swagger tag
+@ApiTags('Users')
 @Controller('user')
 export class UserController {
   constructor(
@@ -46,7 +46,6 @@ export class UserController {
       throw new BadRequestException('Email is already in use.');
     }
 
-    // ✅ Manually generate UUID and create user
     return await this.userService.createUser(body);
   }
 
@@ -79,14 +78,13 @@ export class UserController {
   @ApiBody({ type: UpdateUserDto })
   async updateUser(
     @Param('id') id: string,
-    @Body(new ValidationPipe({ transform: true })) body: UpdateUserDto, // ✅ Apply validation pipe here
+    @Body(new ValidationPipe({ transform: true })) body: UpdateUserDto,
   ) {
     const user = await this.userService.findOne(id);
     if (!user) {
       throw new NotFoundException(`User ${id} not found`);
     }
 
-    // ✅ No need to use plainToInstance manually
     const errors = await validate(body);
     if (errors.length > 0) {
       throw new BadRequestException(
